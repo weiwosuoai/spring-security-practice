@@ -1,6 +1,7 @@
 package com.exception.springsecurityweb.authentication;
 
 import com.alibaba.fastjson.JSONObject;
+import com.exception.springsecurityweb.support.SimpleResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -36,6 +37,6 @@ public class MyAuthenticationFailHandler implements AuthenticationFailureHandler
         log.info("login fail ==>");
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(JSONObject.toJSONString(exception));
+        response.getWriter().write(JSONObject.toJSONString(new SimpleResponse(exception.getMessage())));
     }
 }

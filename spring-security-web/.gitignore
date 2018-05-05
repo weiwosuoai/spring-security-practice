@@ -26,3 +26,5 @@
 /mvnw
 /mvnw.cmd
 /spring-security-web.iml
+/.idea
+.DS_Store
