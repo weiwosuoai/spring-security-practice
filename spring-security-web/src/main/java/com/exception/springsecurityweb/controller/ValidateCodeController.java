@@ -4,11 +4,13 @@ import com.exception.springsecurityweb.entity.ValidateCode;
 import com.exception.springsecurityweb.utils.ValidateCodeUtil;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,7 +31,9 @@ public class ValidateCodeController {
 
     @GetMapping("/validateCode/image")
     public void getValidateCodeImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ValidateCode validateCode = ValidateCodeUtil.generateCodeAndPic();
+//        int width = ServletRequestUtils.getIntParameter(request.getRequest(), "width", 100);
+//        int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height", 100);
+        ValidateCode validateCode = ValidateCodeUtil.generate();
         sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, validateCode);
         ImageIO.write(validateCode.getImage(), "JPEG", response.getOutputStream());
     }

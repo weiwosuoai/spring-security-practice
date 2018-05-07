@@ -81,6 +81,16 @@
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<!--druid 开始-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.19</version>
+		</dependency>
 
 	</dependencies>
 

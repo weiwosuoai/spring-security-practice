@@ -1,6 +1,7 @@
 package com.exception.springsecurityweb.utils;
 
 import com.exception.springsecurityweb.entity.ValidateCode;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,7 +31,7 @@ public class ValidateCodeUtil {
      * codePic为生成的验证码BufferedImage对象
      * @return
      */
-    public static ValidateCode generateCodeAndPic() {
+    public static ValidateCode generate() {
         // 定义图像buffer
         BufferedImage buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         // Graphics2D gd = buffImg.createGraphics();
@@ -81,11 +82,6 @@ public class ValidateCodeUtil {
             // 将产生的四个随机数组合在一起。
             randomCode.append(code);
         }
-        Map<String,Object> map  =new HashMap<String,Object>();
-        //存放验证码
-        map.put("code", randomCode);
-        //存放生成的验证码BufferedImage对象
-        map.put("codePic", buffImg);
 
         // the validate code will be expired after 60 seconds
         return new ValidateCode(buffImg, randomCode.toString(), 60);
